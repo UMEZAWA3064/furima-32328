@@ -76,10 +76,10 @@
 ## buyersテーブル
 
 
-| Column  | Type       | Options |
-| ------- | ---------- | ------- |
-| user_id | references |         |
-| item_id | references |         |
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 
 
