@@ -28,18 +28,18 @@
 
 ## itemsテーブル
 
-| Column             | Type          | Options     |
-| ------------------ | ------------- | ----------- |
-| name               | string        | null: false |
-| description        | text          | null: false |
-| category_id        | integer       | null: false |
-| item_status_id     | integer       | null: false |
-| price              | string        | null: false |
-| delivery_burden_id | integer       | null: false |
-| area_id            | integer       | null: false |
-| delivery_days_id   | integer       | null: false |
-| user_id            | references    |             |
-| image              | ActiveStorage |             |
+| Column             | Type          | Options           |
+| ------------------ | ------------- | ----------------- |
+| name               | string        | null: false       |
+| description        | text          | null: false       |
+| category_id        | integer       | null: false       |
+| item_status_id     | integer       | null: false       |
+| price              | string        | null: false       |
+| delivery_burden_id | integer       | null: false       |
+| area_id            | integer       | null: false       |
+| delivery_days_id   | integer       | null: false       |
+| user               | references    | foreign_key: true |
+| image              | ActiveStorage |                   |
 
 
 
