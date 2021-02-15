@@ -61,7 +61,6 @@
 | address       | string     | null: false |
 | building_name | string     |             |
 | phone_number  | string     | null: false |
-| user_id       | references |             |
 | buyer_id      | references |             |
 
 
