@@ -2,16 +2,17 @@
 
 ## usersテーブル
 
-| Column           | Type   | Options  |
-| ---------------- | ------ | -------- |
-| name             | string | NOT NULL |
-| email            | string | NOT NULL |
-| password         | string | NOT NULL |
-| family_name      | string | NOT NULL |
-| first_name       | string | NOT NULL |
-| family_name_kana | string | NOT NULL |
-| first_name_kana  | string | NOT NULL |
-| birth_date       | date   | NOT NULL |
+| Column           | Type   | Options     |
+| ---------------- | ------ | ----------- |
+| name             | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| family_name      | string | null: false |
+| first_name       | string | null: false |
+| family_name_kana | string | null: false |
+| first_name_kana  | string | null: false |
+| birth_date       | date   | null: false |
+
 
 
 
@@ -28,18 +29,18 @@
 
 ## itemsテーブル
 
-| Column          | Type          | Options  |
-| --------------- | ------------- | -------- |
-| name            | string        | NOT NULL |
-| description     | text          | NOT NULL |
-| category        | string        | NOT NULL |
-| item_status     | string        | NOT NULL |
-| price           | string        | NOT NULL |
-| delivery_burden | string        | NOT NULL |
-| area            | string        | NOT NULL |
-| delivery_days   | string        | NOT NULL |
-| user_id         | references    |          |
-| image           | ActiveStorage |          |
+| Column          | Type          | Options    |
+| --------------- | ------------- | ---------- |
+| name            | string        | null: false|
+| description     | text          | null: false|
+| category        | string        | null: false|
+| item_status     | string        | null: false|
+| price           | string        | null: false|
+| delivery_burden | string        | null: false|
+| area            | string        | null: false|
+| delivery_days   | string        | null: false|
+| user_id         | references    |            |
+| image           | ActiveStorage |            |
 
 
 
@@ -53,16 +54,16 @@
 ## deliveriesテーブル
 
 
-| Column        | Type       | Options  |
-| ------------- | ---------- | -------- |
-| post_code     | integer    | NOT NULL |
-| prefecture    | string     | NOT NULL |
-| city          | string     | NOT NULL |
-| address       | integer    | NOT NULL |
-| building_name | string     |          |
-| phone_number  | string     | NOT NULL |
-| user_id       | references |          |
-| buyer_id      | references |          |
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| post_code     | integer    | null: false |
+| prefecture    | string     | null: false |
+| city          | string     | null: false |
+| address       | integer    | null: false |
+| building_name | string     |             |
+| phone_number  | string     | null: false |
+| user_id       | references |             |
+| buyer_id      | references |             |
 
 
 
