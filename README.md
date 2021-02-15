@@ -47,6 +47,12 @@
 
 - belongs_to :user
 - has_one :buyer
+- belongs_to_active_hash :category
+- belongs_to_active_hash :item_status
+- belongs_to_active_hash :delivery_burden
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :delivery_days
+
 
 
 
@@ -68,7 +74,7 @@
 ### Association
 
 - belongs_to :buyer
-
+- belongs_to_active_hash :prefecture
 
 
 
