@@ -53,15 +53,15 @@
 ## deliveriesテーブル
 
 
-| Column        | Type       | Options     |
-| ------------- | ---------- | ----------- |
-| post_code     | string     | null: false |
-| prefecture    | string     | null: false |
-| city          | string     | null: false |
-| address       | string     | null: false |
-| building_name | string     |             |
-| phone_number  | string     | null: false |
-| buyer_id      | references |             |
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| post_code     | string     | null: false       |
+| prefecture    | string     | null: false       |
+| city          | string     | null: false       |
+| address       | string     | null: false       |
+| building_name | string     |                   |
+| phone_number  | string     | null: false       |
+| buyer         | references | foreign_key: true |
 
 
 
