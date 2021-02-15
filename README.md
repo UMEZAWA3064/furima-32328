@@ -39,7 +39,6 @@
 | area_id            | integer       | null: false       |
 | delivery_days_id   | integer       | null: false       |
 | user               | references    | foreign_key: true |
-| image              | ActiveStorage |                   |
 
 
 
