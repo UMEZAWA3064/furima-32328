@@ -36,7 +36,7 @@
 | item_status_id     | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | delivery_burden_id | integer    | null: false                    |
-| area_id            | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | delivery_days_id   | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 |                    |            |                                |
@@ -62,7 +62,6 @@
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
 | buyer         | references | null: false, foreign_key: true |
-|               |            |                                |
 
 
 
