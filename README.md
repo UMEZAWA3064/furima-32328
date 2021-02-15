@@ -45,8 +45,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :buyers
+- belongs_to :user
+- has_one :buyer
 
 
 
@@ -67,8 +67,8 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :buyers
+- belongs_to :user
+- belongs_to :buyer
 
 
 
@@ -85,9 +85,9 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one :deliveries
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
 
 
 
