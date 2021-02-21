@@ -7,8 +7,8 @@ class User < ApplicationRecord
          
          
    #空だと保存できないバリデーション      
-    validates :name, presence: true
-    validates :email, presence: true
+    validates :nickname, presence: true
+    validates :email, uniqueness: true
     validates :encrypted_password, presence: true
     validates :family_name, presence: true
     validates :first_name, presence: true
