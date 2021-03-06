@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+         has_many :items
+
   # 空だと保存できないバリデーション
   with_options presence: true do
     validates :nickname
