@@ -12,7 +12,7 @@ class Item < ApplicationRecord
       #空では保存できないようにする
   validates :name, presence: true
   validates :description, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   validates :category_id, presence: true
   validates :item_status_id, presence: true
   validates :delivery_burden_id, presence: true
