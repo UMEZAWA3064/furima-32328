@@ -10,7 +10,15 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
 
       #空では保存できないようにする
-  validates :name, :description, :price, :image, :category_id, :item_status_id, :delivery_burden_id, :delivery_day_id, :prefecture_id, presence: true
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :category_id, presence: true
+  validates :item_status_id, presence: true
+  validates :delivery_burden_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :image, presence: true
+  validates :delivery_day_id, presence: true
 
       #ジャンルの選択が「--」の時は保存できないようにする
   validates :prefecture_id, :category_id, :item_status_id, :delivery_burden_id, :delivery_day_id, numericality: { other_than: 0 } 
