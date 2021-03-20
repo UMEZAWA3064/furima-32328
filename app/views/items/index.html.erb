@@ -125,7 +125,6 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
      <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -146,12 +145,11 @@
         </div>
       <% end %>
           <% image_tag "item-sample.png", class: "item-img" %>
-          <%# 商品が売れていればsold outを表示しましょう %>
+          <%# 商品が売れている場合sold outを表示 %>
         <% if @item.present? %>
           <div class='sold-out'>
               <span>Sold Out!!</span>
          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -168,10 +166,8 @@
           <% end %>
         <% end %>
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+      <%# 商品がない場合はダミー商品が表示されるようにし、ある場合は表示されない %>
     <% if @item.present? %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -191,8 +187,6 @@
         <% end %>
       </li>
       <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>
