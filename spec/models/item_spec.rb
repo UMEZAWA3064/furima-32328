@@ -50,6 +50,18 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
 
+        it 'priceが英数混合では出品できない' do
+          @item.price = 'aaa400'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price is not included in the list")
+        end
+
+        it 'priceが半角英語のみでは出品できない' do
+          @item.price = 'aaaaa'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price is not included in the list")
+        end
+
         it 'priceが9999999円以上では出品できない' do
           @item.price = 10000000
           @item.valid?
