@@ -53,17 +53,17 @@ RSpec.describe Item, type: :model do
         it 'priceが英数混合では出品できない' do
           @item.price = 'aaa400'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price is not included in the list")
+          expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
 
         it 'priceが半角英語のみでは出品できない' do
           @item.price = 'aaaaa'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price is not included in the list")
+          expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
 
         it 'priceが9999999円以上では出品できない' do
-          @item.price = 10000000
+          @item.price = 10_000_000
           @item.valid?
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
@@ -77,7 +77,7 @@ RSpec.describe Item, type: :model do
         it 'category_idが0だと出品できない' do
           @item.category_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Category must be other than 0")
+          expect(@item.errors.full_messages).to include('Category must be other than 0')
         end
 
         it 'item_status_idが空だと出品できない' do
@@ -89,7 +89,7 @@ RSpec.describe Item, type: :model do
         it 'item_status_idが0だと出品できない' do
           @item.item_status_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Item status must be other than 0")
+          expect(@item.errors.full_messages).to include('Item status must be other than 0')
         end
 
         it 'delivery_burden_idが空だと出品できない' do
@@ -101,9 +101,8 @@ RSpec.describe Item, type: :model do
         it 'delivery_burden_idが0だと出品できない' do
           @item.delivery_burden_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery burden must be other than 0")
+          expect(@item.errors.full_messages).to include('Delivery burden must be other than 0')
         end
-
 
         it 'prefecture_idが空だと出品できない' do
           @item.prefecture_id = ''
@@ -114,7 +113,7 @@ RSpec.describe Item, type: :model do
         it 'prefecture_idが0だと出品できない' do
           @item.prefecture_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+          expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
         end
 
         it 'delivery_day_idが空だと出品できない' do
@@ -126,17 +125,14 @@ RSpec.describe Item, type: :model do
         it 'delivery_day_idが0だと出品できない' do
           @item.delivery_day_id = 0
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery day must be other than 0")
+          expect(@item.errors.full_messages).to include('Delivery day must be other than 0')
         end
-
 
         it 'imageが空だと出品できない' do
           @item.image = nil
           @item.valid?
           expect(@item.errors.full_messages).to include("Image can't be blank")
         end
-
-        
       end
     end
   end
