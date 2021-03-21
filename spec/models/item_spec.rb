@@ -14,7 +14,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'priceが半角数字であれば出品できる' do
-          @item.price = '500'
+          @item.price = 500
           expect(@item).to be_valid
         end
       end
@@ -39,19 +39,19 @@ RSpec.describe Item, type: :model do
         end
 
         it 'priceが全角数字だと出品できない' do
-          @item.price = '５００'
+          @item.price = ５００
           @item.valid?
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
 
         it 'priceが300円以下では出品できない' do
-          @item.price = '299'
+          @item.price = 299
           @item.valid?
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
 
         it 'priceが9999999円以上では出品できない' do
-          @item.price = '10000000'
+          @item.price = 10000000
           @item.valid?
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
