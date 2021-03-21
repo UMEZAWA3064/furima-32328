@@ -39,7 +39,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'priceが全角数字だと出品できない' do
-          @item.price = ５００
+          @item.price = '５００'
           @item.valid?
           expect(@item.errors.full_messages).to include('Price is not included in the list')
         end
@@ -62,10 +62,22 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Category can't be blank")
         end
 
+        it 'category_idが0だと出品できない' do
+          @item.category_id = 0
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Category must be other than 0")
+        end
+
         it 'item_status_idが空だと出品できない' do
           @item.item_status_id = ''
           @item.valid?
           expect(@item.errors.full_messages).to include("Item status can't be blank")
+        end
+
+        it 'item_status_idが0だと出品できない' do
+          @item.item_status_id = 0
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Item status must be other than 0")
         end
 
         it 'delivery_burden_idが空だと出品できない' do
@@ -74,10 +86,23 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Delivery burden can't be blank")
         end
 
+        it 'delivery_burden_idが0だと出品できない' do
+          @item.delivery_burden_id = 0
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery burden must be other than 0")
+        end
+
+
         it 'prefecture_idが空だと出品できない' do
           @item.prefecture_id = ''
           @item.valid?
           expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        end
+
+        it 'prefecture_idが0だと出品できない' do
+          @item.prefecture_id = 0
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
         end
 
         it 'delivery_day_idが空だと出品できない' do
@@ -86,11 +111,20 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Delivery day can't be blank")
         end
 
+        it 'delivery_day_idが0だと出品できない' do
+          @item.delivery_day_id = 0
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery day must be other than 0")
+        end
+
+
         it 'imageが空だと出品できない' do
           @item.image = nil
           @item.valid?
           expect(@item.errors.full_messages).to include("Image can't be blank")
         end
+
+        
       end
     end
   end
