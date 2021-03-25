@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]  #exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -17,6 +17,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
 
   private
 
