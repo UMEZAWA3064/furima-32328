@@ -25,7 +25,7 @@
 
     <%# ユーザーがログインしている 且つ 商品が出品中 %>
     <%# 商品詳細画面にアクセスしたユーザーが出品者 %>
-    <% if user_signed_in? && @item.user_id %>
+    <% if user_signed_in? %>
       <% if current_user.id == @item.user_id %>
       <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
