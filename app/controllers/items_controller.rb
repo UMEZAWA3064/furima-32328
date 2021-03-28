@@ -1,10 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  # exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
 
-  before_action :move_to_index, except: [:index, :show]       #未ログインユーザーが投稿画面などに直接アクセスしてきたらindexに遷移するようにする。index,showは除外
-  before_action :correct_user,only: [:edit, :destroy]                     #URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
-
-
+  before_action :move_to_index, except: [:index, :show]       # 未ログインユーザーが投稿画面などに直接アクセスしてきたらindexに遷移するようにする。index,showは除外
+  before_action :correct_user, only: [:edit, :destroy] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -40,11 +38,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  def correct_user                         #他のユーザーがURLを直接打っても編集、削除できないようにする
+  # 他のユーザーがURLを直接打っても編集、削除できないようにする
+  def correct_user
     @item = Item.find(params[:id])
-    unless @item.user.id == current_user.id
-  redirect_to action: :index
-    end
+    redirect_to action: :index unless @item.user.id == current_user.id
   end
 
   private
@@ -54,9 +51,8 @@ class ItemsController < ApplicationController
                                  :delivery_burden_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 
-  def move_to_index                        #ログインしているユーザーでない時はindexに遷移する
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+  # ログインしているユーザーでない時はindexに遷移する
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end
