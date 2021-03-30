@@ -34,11 +34,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  # 他のユーザーがURLを直接打っても編集、削除できないようにする
-  def correct_user
-    @item = Item.find(params[:id])
-    redirect_to action: :index unless @item.user.id == current_user.id
-  end
+  
 
   private
 
@@ -47,7 +43,12 @@ class ItemsController < ApplicationController
                                  :delivery_burden_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 
-  def set_item                         #edit,showを省略した内容
+  def set_item                         #edit,show,update,:correct_userを省略した内容
     @item = Item.find(params[:id])
+  end
+
+  # 他のユーザーがURLを直接打っても編集、削除できないようにする
+  def correct_user
+    redirect_to action: :index unless @item.user.id == current_user.id
   end
 end
