@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  # exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
-
+  before_action :set_item, only: [:edit, :show]          #edit,showは同じ記述なのでset_itemとしてprivateメソッドに移し替える
   before_action :move_to_index, except: [:index, :show]       # 未ログインユーザーが投稿画面などに直接アクセスしてきたらindexに遷移するようにする。index,showは除外
   before_action :correct_user, only: [:edit, :destroy] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
 
@@ -22,11 +22,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -50,6 +48,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :description, :image, :category_id, :item_status_id, :prefecture_id,
                                  :delivery_burden_id, :delivery_day_id).merge(user_id: current_user.id)
   end
+
+  def set_item                         #edit,showを省略した内容
+    @item = Item.find(params[:id])
+  end
+
 
   # ログインしているユーザーでない時はindexに遷移する
   def move_to_index
