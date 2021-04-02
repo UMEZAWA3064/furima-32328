@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  # exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
   before_action :set_item, only: [:edit, :show, :update, :destroy]          #edit,showは同じ記述なのでset_itemとしてprivateメソッドに移し替える
-  before_action :correct_user, only: [:edit, :update] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
+  before_action :correct_user, only: [:edit, :update, :destroy] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
 
   def index
     @items = Item.all.order(created_at: :desc)
