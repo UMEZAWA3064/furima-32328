@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  # exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
-  before_action :set_item, only: [:edit, :show, :update]          #edit,showは同じ記述なのでset_itemとしてprivateメソッドに移し替える
-  before_action :correct_user, only: [:edit, :update] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
+  before_action :set_item, only: [:edit, :show, :update, :destroy]          #edit,showは同じ記述なのでset_itemとしてprivateメソッドに移し替える
+  before_action :correct_user, only: [:edit, :update, :destroy] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -34,6 +34,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   
 
   private
@@ -43,7 +48,7 @@ class ItemsController < ApplicationController
                                  :delivery_burden_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 
-  def set_item                         #edit,show,update,:correct_userを省略した内容
+  def set_item                         #edit,show,update,destroy :correct_userを省略した内容
     @item = Item.find(params[:id])
   end
 
