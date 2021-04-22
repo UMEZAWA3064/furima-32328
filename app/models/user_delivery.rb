@@ -13,7 +13,7 @@ class UserDelivery
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
+    buyer = Buyer.create(user_id: user_id, item_id: item_id)
     Delivery.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number,  building_name: building_name, buyer_id: buyer.id)
-    buyer = Buyer.create(user_id: user_id, buyer_id: buyer_id)
   end
 end
