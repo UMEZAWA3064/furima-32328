@@ -22,6 +22,10 @@ RSpec.describe UserDelivery, type: :model do
           expect(@user_delivery).to be_valid
         end
 
+        it "tokenがあれば保存ができること" do
+          expect(@user_delivery).to be_valid
+        end
+
 
         context '商品が購入できないとき' do
           it 'post_codeが空だと購入できない' do
@@ -82,6 +86,12 @@ RSpec.describe UserDelivery, type: :model do
             @user_delivery.phone_number = '04811122'
             @user_delivery.valid?
             expect(@user_delivery.errors.full_messages).to include("Phone number is invalid")
+          end
+
+          it "tokenが空では登録できないこと" do
+            @user_delivery.token = nil
+            @user_delivery.valid?
+            expect(@user_delivery.errors.full_messages).to include("Token can't be blank")
           end
 
         end
