@@ -1,12 +1,13 @@
 class DeliveriesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @item = Item.find(params[:item_id])
     @user_delivery = UserDelivery.new
+    if @item.user_id == current_user || @item.buyer != nil           #商品に紐付いた購入情報があれば、トップページに遷移する
+      redirect_to root_path
+    end
   end
-
-  #def new
-    #@user_delivery = UserDelivery.new
-  #end
 
   def create
     @user_delivery = UserDelivery.new(delivery_params)
