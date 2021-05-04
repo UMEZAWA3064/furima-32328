@@ -7,6 +7,7 @@ class DeliveriesController < ApplicationController
     @user_delivery = UserDelivery.new
   end
 
+
   def create
     @user_delivery = UserDelivery.new(delivery_params)
     if @user_delivery.valid?
