@@ -1,15 +1,14 @@
 class DeliveriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_furima, only: [:index, :create]
+  before_action :prevent_url, only: [:index, :create]    #ログイン状態の出品者が売却済みの自身が出品した商品に対して、商品購入画面に遷移できないようにする
 
   def index
-    @item = Item.find(params[:item_id])
     @user_delivery = UserDelivery.new
-    redirect_to root_path if @item.user_id == current_user || !@item.buyer.nil? # 商品に紐付いた購入情報があれば、トップページに遷移する
   end
 
   def create
     @user_delivery = UserDelivery.new(delivery_params)
-    @item = Item.find(params[:item_id])
     if @user_delivery.valid?
       pay_item
       @user_delivery.save
@@ -27,6 +26,15 @@ class DeliveriesController < ApplicationController
     )
   end
 
+  def set_furima
+    @item = Item.find(params[:item_id])
+  end
+
+  def prevent_url
+    if @item.user_id == current_user.id || @item.buyer != nil
+      redirect_to root_path
+    end  
+
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
@@ -34,5 +42,6 @@ class DeliveriesController < ApplicationController
       card: delivery_params[:token],
       currency: 'jpy'
     )
+  end
   end
 end
