@@ -26,6 +26,11 @@ RSpec.describe UserDelivery, type: :model do
           expect(@user_delivery).to be_valid
         end
 
+        it '建物名がなくても購入できる' do
+         @user_delivery.building_name = ''
+         expect(@user_delivery).to be_valid
+        end
+
         context '商品が購入できないとき' do
           it 'post_codeが空だと購入できない' do
             @user_delivery.post_code = ''
