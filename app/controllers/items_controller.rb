@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  # exceptでログインしていない状態でもトップページ、詳細ページ、新規登録、ログインページに飛べる
   before_action :set_item, only: [:edit, :show, :update, :destroy] # edit,showは同じ記述なのでset_itemとしてprivateメソッドに移し替える
-  before_action :correct_user, only: [:edit, :update, :destroy] # URL直打ち禁止にする。他のユーザーが編集、削除できないようにする。
   before_action :prevent_url, only: [:edit, :update, :destroy] #出品者本人が売却済みの商品に対して編集、削除のURLの直打ち禁止
 
   def index
@@ -52,10 +51,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # 他のユーザーがURLを直接打っても編集、削除できないようにする
-  def correct_user
-    redirect_to action: :index unless @item.user.id == current_user.id
-  end
 
   def prevent_url
     if @item.user_id != current_user.id || @item.buyer != nil 
