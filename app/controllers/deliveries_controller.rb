@@ -1,7 +1,7 @@
 class DeliveriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_furima, only: [:index, :create]
-  before_action :prevent_url, only: [:index, :create]    #ログイン状態の出品者が売却済みの自身が出品した商品に対して、商品購入画面に遷移できないようにする
+  before_action :prevent_url, only: [:index, :create]    
 
   def index
     @user_delivery = UserDelivery.new
