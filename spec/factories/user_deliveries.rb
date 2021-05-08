@@ -6,8 +6,7 @@ FactoryBot.define do
     address { '鶴ヶ峰1-1-1' }
     building_name { 'マンション' }
     phone_number { '09011112222' }
-    user_id { 3 }
-    item_id { 4 }
+    
     token { 'tok_abcdefghijk00000000000000000' }
   end
 end

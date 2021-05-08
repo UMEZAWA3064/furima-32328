@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe UserDelivery, type: :model do
   describe '#create' do
     before do
-      @user_delivery = FactoryBot.build(:user_delivery)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @user_delivery = FactoryBot.build(:user_delivery, user_id: @user.id, item_id: @item.id)
+      sleep 0.1 # 0.1秒待機
     end
 
     describe '商品出品' do
@@ -51,9 +54,9 @@ RSpec.describe UserDelivery, type: :model do
           end
 
           it 'prefecture_idが空だと購入できない' do
-            @user_delivery.prefecture_id = nil
+            @user_delivery.prefecture_id = 0
             @user_delivery.valid?
-            expect(@user_delivery.errors.full_messages).to include('Prefecture is not a number')
+            expect(@user_delivery.errors.full_messages).to include('Prefecture must be other than 0')
           end
 
           it 'cityが空だと購入できない' do
@@ -96,6 +99,18 @@ RSpec.describe UserDelivery, type: :model do
             @user_delivery.token = nil
             @user_delivery.valid?
             expect(@user_delivery.errors.full_messages).to include("Token can't be blank")
+          end
+
+          it 'user_idが空だ登録できない' do
+            @user_delivery.user_id = nil
+            @user_delivery.valid?
+            expect(@user_delivery.errors.full_messages).to include("User can't be blank")
+          end
+
+          it 'item_idが空だと登録できない' do
+            @user_delivery.item_id = nil
+            @user_delivery.valid?
+            expect(@user_delivery.errors.full_messages).to include("Item can't be blank") 
           end
         end
       end

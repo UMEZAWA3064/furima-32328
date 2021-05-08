@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
   describe '#create' do
     before do
       @item = FactoryBot.build(:item)
-      @item.image = fixture_file_upload('app/assets/images/search.png')
+      #@item.image = fixture_file_upload('app/assets/images/search.png')
     end
 
     describe '商品出品' do
