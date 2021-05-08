@@ -95,6 +95,18 @@ RSpec.describe UserDelivery, type: :model do
             expect(@user_delivery.errors.full_messages).to include('Phone number is invalid')
           end
 
+          it 'phnoe_numberが数字のみでないと購入できない' do
+            @user_delivery.phone_number = 'o901111o0o0'
+            @user_delivery.valid?
+            expect(@user_delivery.errors.full_messages).to include('Phone number is invalid')
+          end
+
+          it 'phnoe_numberが全角数字だと購入できない' do
+            @user_delivery.phone_number = '０９０１１１１２２２２'
+            @user_delivery.valid?
+            expect(@user_delivery.errors.full_messages).to include('Phone number is invalid')
+          end
+
           it 'tokenが空では登録できないこと' do
             @user_delivery.token = nil
             @user_delivery.valid?
